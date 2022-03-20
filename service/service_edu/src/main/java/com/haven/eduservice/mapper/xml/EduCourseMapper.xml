@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haven.eduservice.mapper.EduCourseMapper">
+
+    <select id="courseConfirmMessage" resultType="com.haven.eduservice.vo.CourseConfirm" parameterType="string">
+            select ec.id as courseId,ec.title,ed.description,ec.price,ec.lesson_num,ec.cover,
+            es1.title as twoSubject ,es2.title as oneSubject,et.`name` as teacherName
+            from edu_course ec
+            INNER JOIN edu_teacher et ON ec.teacher_id=et.id
+            INNER JOIN edu_subject es1 ON es1.id=ec.subject_id
+            INNER JOIN edu_subject es2 ON es2.id=ec.subject_parent_id
+            INNER JOIN edu_course_description ed ON ec.id=ed.id
+            <if test="_parameter!=null">
+            <where>
+                ec.id=#{id}
+            </where>
+            </if>
+
+    </select>
+
+
+    <select id="selectCoursePage" resultType="com.haven.eduservice.vo.CourseConfirm"
+            parameterType="com.haven.eduservice.vo.SelectCourseVo">
+
+            select ec.id as courseId,ec.title,ed.description,ec.price,ec.lesson_num,ec.cover,
+            es1.title as twoSubject ,es2.title as oneSubject,et.`name` as teacherName
+            from edu_course ec
+            INNER JOIN edu_teacher et ON ec.teacher_id=et.id
+            INNER JOIN edu_subject es1 ON es1.id=ec.subject_id
+            INNER JOIN edu_subject es2 ON es2.id=ec.subject_parent_id
+            INNER JOIN edu_course_description ed ON ec.id=ed.id
+        <where>
+        <if test="courseVo !=null">
+            <if test="courseVo.subjectParentId != null and courseVo.subjectParentId != '' ">
+
+                    and ec.subject_parent_id=#{courseVo.subjectParentId}
+
+            </if>
+        <if test="courseVo.subjectId != null and courseVo.subjectId != ''">
+
+                and ec.subject_id=#{courseVo.subjectId}
+
+        </if>
+        <if test="courseVo.title != null and courseVo.title != ''">
+
+                and ec.title like concat("%",#{courseVo.title},"%")
+
+        </if>
+        <if test="courseVo.teacherId != null and courseVo.teacherId != ''">
+
+                and ec.teacher_id=#{courseVo.teacherId}
+
+        </if>
+        </if>
+    </where>
+    </select>
+</mapper>

@@ -1,0 +1,19 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: service-oss
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+logging:
+  level:
+    defaultZone: debug
+
+aliyun:
+  oss:
+    endpoint: oss-cn-guangzhou.aliyuncs.com
+    accessKeyId: LTAI5tP3qZZnhkUuiDKuDgwV
+    accessKeySecret: GQwTdOE2RT0Jy3K7hwcWSsPwS1VXMl
+    bucketName: havenguli

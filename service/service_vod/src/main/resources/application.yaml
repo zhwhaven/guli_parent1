@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: service-vod
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+
+server:
+  port: 8003
+
+aliyun:
+  vod:
+    accessKeyId: LTAI5tP3qZZnhkUuiDKuDgwV
+    accessKeySecret: GQwTdOE2RT0Jy3K7hwcWSsPwS1VXMl
