@@ -11,6 +11,7 @@
 
     <artifactId>common_utils</artifactId>
 
+
     <!-- 添加spring-boot的maven插件 -->
     <build>
     <pluginManagement>

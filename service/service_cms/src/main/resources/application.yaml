@@ -1,8 +1,8 @@
 server:
-  port: 8001
+  port: 8004
 spring:
   application:
-    name: edu-service
+    name: cms-service
   cloud:
     nacos:
       discovery:
@@ -15,15 +15,6 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-  redis:
-    host: 192.168.6.100
-    port: 9990
-    jedis:
-      pool:
-        max-active: 100
-        max-idle: 3
-        max-wait: -1
-        min-idle: 0
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

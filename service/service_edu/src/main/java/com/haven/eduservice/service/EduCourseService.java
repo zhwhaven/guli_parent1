@@ -7,8 +7,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.haven.eduservice.vo.CourseConfirm;
 import com.haven.eduservice.vo.CourseForm;
 import com.haven.eduservice.vo.SelectCourseVo;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -29,4 +31,6 @@ public interface EduCourseService extends IService<EduCourse> {
     CourseConfirm showConfirm(String courseId);
 
     IPage<CourseConfirm> selectCoursePage(Page<CourseConfirm> courseConfirmPage, SelectCourseVo courseVo);
+    @Cacheable(value = "banner",key = "'teacherAndCourse'+'#600'")
+    Map<String, List> getTeacherAndCourse();
 }
